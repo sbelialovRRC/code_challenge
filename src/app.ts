@@ -19,14 +19,21 @@ app.get("/api/v1/players", (req, res) => {
 });
 
 app.get("/api/v1/players/:id", (req, res) => {
-    let result = getPlayerById(123);
+    let id = Number(req.params.id)
+
+    let result = getPlayerById(id);
+
+    if (result === undefined){
+        res.status(404).send("User not found")
+        return;
+    }
 
     res.json(result);
 });
 
 app.get("/api/v1/players/:id/rating", (req, res) => {
     let result = getPlayerRatingByPlayerId(123);
-    
+
     res.json(result);
 });
 

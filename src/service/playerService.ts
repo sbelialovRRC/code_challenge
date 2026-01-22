@@ -38,8 +38,10 @@ export function getAllPlayersWithCount() {
     }
 }
 
-export function getPlayerById(id: number) {
-    
+export function getPlayerById(id: number) : Player | undefined {
+    let player = playerData.find(x => x.id == id)
+
+    return player;
 }
 
 export function getPlayerRatingByPlayerId(id:number) {
