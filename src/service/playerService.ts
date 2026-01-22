@@ -29,3 +29,16 @@ let playerData: Player[] = [
         totalScore: 0
     }
 ];
+
+
+export function getAllPlayersWithCount() {
+    
+}
+
+export function getPlayerById(id: number) {
+    
+}
+
+export function getPlayerRatingByPlayerId(id:number) {
+    
+}
