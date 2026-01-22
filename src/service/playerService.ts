@@ -32,7 +32,10 @@ let playerData: Player[] = [
 
 
 export function getAllPlayersWithCount() {
-    
+    return {
+        players: playerData,
+        count: playerData.length
+    }
 }
 
 export function getPlayerById(id: number) {

@@ -15,15 +15,19 @@ app.get("/api/v1/health", (req, res) => {
 app.get("/api/v1/players", (req, res) => {
     let result = getAllPlayersWithCount();
 
-    res.json({ test: "test" });
+    res.json(result);
 });
+
 app.get("/api/v1/players/:id", (req, res) => {
     let result = getPlayerById(123);
-    res.json({ test: "test" });
+
+    res.json(result);
 });
+
 app.get("/api/v1/players/:id/rating", (req, res) => {
     let result = getPlayerRatingByPlayerId(123);
-    res.json({ test: "test" });
+    
+    res.json(result);
 });
 
 
