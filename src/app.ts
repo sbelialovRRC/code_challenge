@@ -1,6 +1,6 @@
-import express,  { Express } from "express";
+import express, { Express } from "express";
 
-let app: Express =  express();
+let app: Express = express();
 
 app.get("/api/v1/health", (req, res) => {
     res.json({
@@ -10,5 +10,16 @@ app.get("/api/v1/health", (req, res) => {
         version: "1.0.0",
     });
 });
+
+app.get("/api/v1/players", (req, res) => {
+    res.json({ test: "test" });
+});
+app.get("/api/v1/players/:id", (req, res) => {
+    res.json({ test: "test" });
+});
+app.get("/api/v1/players/:id/rating", (req, res) => {
+    res.json({ test: "test" });
+});
+
 
 export default app;
