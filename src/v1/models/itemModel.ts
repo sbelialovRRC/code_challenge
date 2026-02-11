@@ -1,4 +1,4 @@
-export interface Post {
+export interface Item {
     id: string;
     userId: string;
     content: string;
