@@ -2,11 +2,12 @@ import { Request, Response } from "express";
 import { getAllItems, createNewItem, updateItemById, deleteItemById, getItemByIdAsync } from "../service/itemsService"
 import { HTTP_STATUS } from "../../constants/httpConstants"
 import { successResponse } from "../models/responseModel";
+import { ItemCreateRequest } from "../models/itemCreateRequestModel"
+import { ItemDTO } from "../models/itemDTO";
 
-export const getAllItem = (req: Request, res: Response) => {
+export const getAllItem = async (req: Request, res: Response) => {
     try {
-        const items: string[] = getAllItems();
-
+        const items = await getAllItems();
 
         res.status(HTTP_STATUS.OK).json(successResponse(items, "Here is your requested items"));
     } catch (error) {
@@ -27,10 +28,15 @@ export const getItemById = async (req: Request, res: Response) => {
 }
 
 
-export const createItem = (req: Request, res: Response) => {
-    let result = createNewItem("new item")
+export const createItem = async (req: Request, res: Response) => {
+    const requestItem: ItemCreateRequest = {
+        content: req.body.content,
+        userId: req.body.userId
+    }
 
-    res.status(418).send(result);
+    let result = await createNewItem(requestItem)
+
+    res.status(HTTP_STATUS.CREATED).send(result);
 }
 
 export const updateItem = (req: Request, res: Response) => {

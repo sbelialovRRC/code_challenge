@@ -1,24 +1,25 @@
-import { addDocument, getDocumentById } from  "../repositories/itemRepository"
+import { addDocument, getDocumentById, getCollection } from "../repositories/itemRepository"
 import { ItemResponse } from "../models/itemResponse"
-import e from "node_modules/@types/express";
-export const getAllItems = (): string[] => {
+import { ItemCreateRequest } from "../models/itemCreateRequestModel"
+import {ItemDTO} from "../models/itemDTO"
+
+export const getAllItems = async (): Promise<Array<ItemDTO> | undefined> => {
     // Logic to process all items from the database
-    return ["Item 1", "Item 2"];
+    return await getCollection();
 };
 
-export const getItemByIdAsync = async (id: string): Promise<ItemResponse>  => {
+export const getItemByIdAsync = async (id: string): Promise<ItemResponse> => {
     // Logic to process all items from the database
     let entity = await getDocumentById(id)
     return {
         content: entity?.content,
         id: entity?.id
-    } ;
+    };
 };
 
-export const createNewItem = (item: string): string => {
+export const createNewItem = async (item: ItemCreateRequest): Promise<string> => {
     // Logic to add a new item to the database
-    addDocument();
-    return "Item added";
+    return await addDocument(item);
 };
 
 export const updateItemById = (id: number, item: string): string => {
