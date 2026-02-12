@@ -1,4 +1,4 @@
-import { addDocument, getDocumentById, getCollection } from "../repositories/itemRepository"
+import { addDocument, getDocumentById, getCollection, updateDocument, deleteDocument } from "../repositories/itemRepository"
 import { ItemResponse } from "../models/itemResponse"
 import { ItemCreateRequest } from "../models/itemCreateRequestModel"
 import {ItemDTO} from "../models/itemDTO"
@@ -22,12 +22,13 @@ export const createNewItem = async (item: ItemCreateRequest): Promise<string> =>
     return await addDocument(item);
 };
 
-export const updateItemById = (id: number, item: string): string => {
+export const updateItemById = async (id: string, item: ItemCreateRequest): Promise<void> => {
     // Logic to update an item in the database
-    return "Item updated";
+    await updateDocument(id, item);
+    return;
 };
 
-export const deleteItemById = (id: number): string => {
+export const deleteItemById = async (id: string): Promise<void> => {
     // Logic to delete an item from the database
-    return "Item deleted";
+    await deleteDocument(id);
 };

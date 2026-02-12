@@ -70,3 +70,27 @@ export const getCollection = async (): Promise<Array<ItemDTO> | undefined> => {
 
     return items;
 };
+
+export const updateDocument = async (id: string, item: ItemCreateRequest): Promise<void> => {
+    // Create a reference to a specific document in the 'users' collection
+    const docRef: DocumentReference = db.collection("items").doc(id);
+
+    // Use the `update()` method to modify specific fields in the document
+    // This will only change the specified fields, leaving others untouched
+    await docRef.update({
+        userId: item.userId,
+        content: item.content,
+        updatedAt: new Date(),
+        test: "undefined field"
+    });
+
+    return;
+};
+
+export const deleteDocument = async (id: string): Promise<void> => {
+    // Create a reference to a specific document in the 'users' collection
+    const docRef: DocumentReference = db.collection("items").doc(id);
+
+    // Use the `delete()` method to remove the document from Firestore
+    await docRef.delete();
+};

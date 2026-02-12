@@ -39,15 +39,22 @@ export const createItem = async (req: Request, res: Response) => {
     res.status(HTTP_STATUS.CREATED).send(result);
 }
 
-export const updateItem = (req: Request, res: Response) => {
-    let result = updateItemById(123, "test item")
+export const updateItem = async (req: Request, res: Response) => {
+    let id: string =  req.params.id;
+    let request: ItemCreateRequest = {
+        content: req.body.content,
+        userId: req.body.userId
+    }
 
-    res.json(result)
+    await updateItemById(id, request)
+
+    res.status(HTTP_STATUS.NO_CONTENT).send(`Entity ${id} was updated`);
 }
 
 
-export const deleteItem = (req: Request, res: Response) => {
-    let result = deleteItemById(123)
+export const deleteItem = async (req: Request, res: Response) => {
+    let id: string = req.params.id
+    await deleteItemById(id)
 
-    res.json(result)
+    res.status(HTTP_STATUS.NO_CONTENT).send(`Entity ${id} was deleted`);
 }
