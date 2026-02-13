@@ -15,11 +15,11 @@ jobs:
             - name: Setup Node.js
               uses: actions/setup-node@v3
               with:
-                  node-version: "24.x"
+                  node-version: "20.x"
 
             # Step 3: Install ESLint for development
             - name: Install ESLint for development
-              run: npm install --save-dev eslint @eslint/js @types/eslint__js typescript typescript-eslint
+              run: npm install --save-dev eslint@9.39.2 @eslint/js @types/eslint__js typescript typescript-eslint
 
             # Step 4: Run ESLint with Reviewdog
             - name: Run ESLint with Reviewdog
