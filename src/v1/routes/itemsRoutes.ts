@@ -13,9 +13,9 @@ import { itemSchemas } from "../validation/itemsSchemas";
 const itemsRoutes: Router = express.Router();
 
 itemsRoutes.get("/", getAllItem);
-itemsRoutes.get("/:id", getItemById )
+itemsRoutes.get("/:id", validateRequest(itemSchemas.getById), getItemById )
 itemsRoutes.post("/",  validateRequest(itemSchemas.create), createItem);
-itemsRoutes.put("/:id", updateItem);
-itemsRoutes.delete("/:id", deleteItem);
+itemsRoutes.put("/:id",validateRequest(itemSchemas.update), updateItem);
+itemsRoutes.delete("/:id",validateRequest(itemSchemas.delete), deleteItem);
 
 export default itemsRoutes;

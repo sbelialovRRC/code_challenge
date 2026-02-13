@@ -5,7 +5,7 @@ export const itemSchemas = {
     // POST /Item - Create new Item
     create: {
         body: Joi.object({
-            userId: Joi.string().required().messages({
+            userId: Joi.string().required().min(5).max(10).email().messages({
                 "any.required": "User ID is required",
                 "string.empty": "User ID cannot be empty",
             }),
@@ -19,7 +19,7 @@ export const itemSchemas = {
     // GET /Item/:id - Get single Item
     getById: {
         params: Joi.object({
-            id: Joi.string().required().messages({
+            id: Joi.number().required().messages({
                 "any.required": "Item ID is required",
                 "string.empty": "Item ID cannot be empty",
             }),
